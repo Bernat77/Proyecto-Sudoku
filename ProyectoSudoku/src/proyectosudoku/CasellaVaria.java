@@ -5,7 +5,9 @@
  */
 package proyectosudoku;
 
+import java.awt.Color;
 import java.awt.event.*;
+
 
 /**
  *
@@ -22,8 +24,8 @@ public class CasellaVaria extends Casella {
     @Override
     public void processKeyEvent(KeyEvent ev) {
         if (Character.isDigit(ev.getKeyChar())
-                ||ev.getKeyChar()==KeyEvent.VK_BACK_SPACE
-                ||ev.getKeyChar()==KeyEvent.VK_DELETE) {
+                || ev.getKeyChar() == KeyEvent.VK_BACK_SPACE
+                || ev.getKeyChar() == KeyEvent.VK_DELETE) {
             super.processKeyEvent(ev);
         }
         ev.consume();

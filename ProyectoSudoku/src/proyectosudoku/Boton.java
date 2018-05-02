@@ -23,34 +23,7 @@ public class Boton extends JButton {
             Boton.this.joc.getSemaforo().setStatus(4);
             Boton.this.joc.getCrono().reset();
             Boton.this.joc.getCrono().getTim().start();
-            Boton.this.joc.enable();
             Boton.this.joc.nuevoTaulell();
-        }
-    }
-
-    public class EventoComprob implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            int n = joc.getTaulell().recorridoComprobar();
-            switch (n) {
-                case 1:
-                    Boton.this.joc.getSemaforo().setStatus(n);
-                    Boton.this.joc.getCrono().getTim().stop();
-                    for (int i = 0; i < Boton.this.joc.getTaulell().getCaselles().length; i++) {
-                        for (int j = 0; j < Boton.this.joc.getTaulell().getCaselles()[i].length; j++) {
-                            Boton.this.joc.getTaulell().getCaselles()[i][j].setEditable(false);
-                            Boton.this.joc.getTaulell().getCaselles()[i][j].setBackground(Color.white);
-                        }
-                    }
-                    break;
-                case 2:
-                    Boton.this.joc.getSemaforo().setStatus(n);
-                    break;
-                case 3:
-                    Boton.this.joc.getSemaforo().setStatus(n);
-                    break;
-            }
-
         }
     }
 
@@ -101,7 +74,7 @@ public class Boton extends JButton {
                 addActionListener(new Boton.EventoNueva());
                 break;
             case 2:
-                addActionListener(new Boton.EventoComprob());
+               
                 break;
             case 3:
                 addActionListener(new Boton.EventoSalir());

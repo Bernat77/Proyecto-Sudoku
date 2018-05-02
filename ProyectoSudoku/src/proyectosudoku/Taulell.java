@@ -7,12 +7,32 @@ package proyectosudoku;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author Bernat2
  */
 public class Taulell extends JPanel {
+
+    public class Comprobar implements DocumentListener {
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            comprobarStatus();
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            comprobarStatus();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            comprobarStatus();
+        }
+    }
 
     private Joc joc;
     private Casella[][] caselles = new Casella[9][9];
@@ -26,16 +46,25 @@ public class Taulell extends JPanel {
                 c.gridy = y;
                 if (sudoku[x][y] != 0) {
                     CasellaFixa casella = new CasellaFixa(sudoku[x][y]);
+                    casella.setTaulell(this);
+                    casella.setHorizontalAlignment(JTextField.CENTER);
+                    casella.setBackground(Color.magenta);
+                    casella.setForeground(Color.white);
                     add(casella, c);
                     caselles[x][y] = casella;
                 } else {
                     CasellaVaria casella = new CasellaVaria();
+                    casella.getDocument().addDocumentListener(new Comprobar());
+                    casella.setHorizontalAlignment(JTextField.CENTER);
+                    casella.setBackground(Color.cyan);
+                    casella.setForeground(Color.black);
                     add(casella, c);
                     caselles[x][y] = casella;
                 }
 
             }
         }
+        bordeSector();
 
     }
 
@@ -54,6 +83,70 @@ public class Taulell extends JPanel {
         }
     }
 
+    public void bordeSector() {
+
+        Color color = Color.black;
+        int n = 2;
+
+        Color color2 = Color.white;
+        int m = 2;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color, n));
+            }
+        }
+
+        for (int i = 6; i < 9; i++) {
+            for (int j = 0; j < 3; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color, n));
+            }
+        }
+
+        for (int i = 3; i < 6; i++) {
+            for (int j = 3; j < 6; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color, n));
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 6; j < 9; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color, n));
+            }
+        }
+
+        for (int i = 6; i < 9; i++) {
+            for (int j = 6; j < 9; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color, n));
+            }
+        }
+
+        for (int i = 3; i < 6; i++) {
+            for (int j = 0; j < 3; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color2, m));
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 3; j < 6; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color2, m));
+            }
+        }
+
+        for (int i = 6; i < 9; i++) {
+            for (int j = 3; j < 6; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color2, m));
+            }
+        }
+
+        for (int i = 3; i < 6; i++) {
+            for (int j = 6; j < 9; j++) {
+                caselles[i][j].setBorder(BorderFactory.createLineBorder(color2, m));
+            }
+        }
+
+    }
+
     /**
      * Comprueba los criterios del sudoku en un array. Este método evalua si, un
      * array pasada por parámetros, cumple las reglas del sudoku tales como, Los
@@ -69,7 +162,7 @@ public class Taulell extends JPanel {
 
         //comprobar si los numeros son adecuados
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > 9 || array[i] < 1) {
+            if (array[i] > 9 || array[i] < 0) {
                 return 3;
             }
         }
@@ -79,12 +172,12 @@ public class Taulell extends JPanel {
         for (int vuelta = 0; vuelta < array.length; vuelta++) {
             for (int i = 0, cuenta = 0; i < array.length; i++) {
 
-                if (array[i] == vuelta) {
+                if (array[i] == vuelta && array[i]!=0) {
                     cuenta++;
                 }
 
                 if (cuenta > 1) {
-                    return 2;
+                    return 3;
                 }
             }
             suma += array[vuelta];
@@ -164,6 +257,29 @@ public class Taulell extends JPanel {
         }
 
         return resultado;
+
+    }
+
+    public void comprobarStatus() {
+        int n = recorridoComprobar();
+        switch (n) {
+            case 1:
+                getJoc().getSemaforo().setStatus(n);
+                getJoc().getCrono().getTim().stop();
+                for (int i = 0; i < caselles.length; i++) {
+                    for (int j = 0; j < caselles[i].length; j++) {
+                        caselles[i][j].setEditable(false);
+                        caselles[i][j].setBackground(Color.white);
+                    }
+                }
+                break;
+            case 2:
+                getJoc().getSemaforo().setStatus(n);
+                break;
+            case 3:
+                getJoc().getSemaforo().setStatus(n);
+                break;
+        }
 
     }
 

@@ -33,7 +33,7 @@ public class Joc {
         this.botones = new ArrayList<Boton>();
 
         //ventana
-        ventana = new JFrame("Sudoku v1.0");
+        ventana = new JFrame("Sudoku v1.1");
         ventana.setResizable(false);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(920, 750);
@@ -70,7 +70,7 @@ public class Joc {
         frame.setBackground(new Color(0, 0, 0, 0));
         //c.weightx = 1;
         //c.weighty = 1;
-
+        
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
@@ -83,26 +83,14 @@ public class Joc {
         frame.add(crono, c);
 
         //taulell 
-        c.insets = new Insets(15, 40, 0, 0);
+        c.insets = new Insets(40, 40, 0, 0);
         c.gridheight = 3;
         c.gridy = 1;
         frame.add(taulell, c);
 
-        //boton
-        Font fuente = new Font("fuente", Font.BOLD, 18);
-        c.insets = new Insets(35, 30, 0, 0);
-        c.gridheight = 1;
-        c.gridy = 4;
-        Boton boton1 = crearBoton("Comprobar");
-        boton1.setAccion(2);
-        boton1.setEnabled(false);
-        boton1.setPreferredSize(new Dimension(300, 50));
-        boton1.setFont(fuente);
-        frame.add(boton1, c);
-
         //semafur
-        c.insets = new Insets(20, 30, 0, 0);
-        c.gridy = 5;
+        c.insets = new Insets(60, 30, 0, 0);
+        c.gridy = 4;
         frame.add(semaforo, c);
 
         return frame;
@@ -186,7 +174,7 @@ public class Joc {
         c.gridheight = 3;
         c.gridy = 1;
         c.gridx = 0;
-        c.insets = new Insets(15, 40, 0, 0);
+        c.insets = new Insets(40, 40, 0, 0);
 
         // añado el panel
         panel.add(taulell, c);
@@ -215,14 +203,6 @@ public class Joc {
 
     }
 
-    public void enable() {
-        Container cp = ventana.getContentPane();
-        JLabel cp2 = (JLabel) cp.getComponent(0);
-        JPanel jp = (JPanel) cp2.getComponent(0);
-        if (jp.getComponent(2) instanceof JButton) {
-            jp.getComponent(2).setEnabled(true);
-        }
-    }
 
     public Boton crearBoton(String texto) {
         Boton boton = new Boton(texto);

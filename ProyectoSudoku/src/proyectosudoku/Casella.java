@@ -5,20 +5,30 @@
  */
 package proyectosudoku;
 
-
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.*;
-
 
 /**
  *
  * @author Bernat2
  */
-public class Casella extends JTextField{
-    public Casella(){
+public class Casella extends JTextField {
+
+    protected Taulell taulell;
+
+    public Casella() {
         setPreferredSize(new Dimension(40, 40));
-        Font fuente = new Font("fuente",Font.BOLD, 30);
+        Font fuente = new Font("fuente", Font.BOLD, 30);
         setFont(fuente);
     }
+
+    public Taulell getTaulell() {
+        return taulell;
+    }
+
+    public void setTaulell(Taulell taulell) {
+        this.taulell = taulell;
+    }
+
 }
