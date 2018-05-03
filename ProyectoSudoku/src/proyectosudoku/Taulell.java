@@ -172,7 +172,7 @@ public class Taulell extends JPanel {
         for (int vuelta = 0; vuelta < array.length; vuelta++) {
             for (int i = 0, cuenta = 0; i < array.length; i++) {
 
-                if (array[i] == vuelta && array[i]!=0) {
+                if (array[i] == array[vuelta] && array[i] != 0) {
                     cuenta++;
                 }
 
@@ -191,20 +191,32 @@ public class Taulell extends JPanel {
 
     }
 
+    public void pintarCasellas() {
+        for (int x = 0; x < caselles.length; x++) {
+            for (int y = 0; y < caselles[x].length; y++) {
+                if (caselles[x][y] instanceof CasellaFixa) {
+                    caselles[x][y].setBackground(Color.magenta);
+                    caselles[x][y].setForeground(Color.white);
+                } else if (caselles[x][y] instanceof CasellaVaria) {
+                    caselles[x][y].setBackground(Color.cyan);
+                    caselles[x][y].setForeground(Color.black);
+                }
+
+            }
+        }
+    }
+
     public int recorridoComprobar() {
 
         int[] array = new int[9];
         int resultado = 1;
         CasellaVaria prueba = new CasellaVaria();
 
-        for (int c = 0; c < 9; c += 3) {
-            for (int z = 0; z < 9; z += 3) {
-                int w = c;
-                if (c == 0) {
-                    w = 3;
-                }
-                for (int x = c, cont = 0; x < w; x++) {
-                    for (int y = z; y < w; y++, cont++) {
+        for (int c = 0; c <= 6; c += 3) {
+            for (int z = 0; z <= 6; z += 3) {
+
+                for (int x = c, cont = 0; x < c + 3; x++) {
+                    for (int y = z; y < z + 3; y++, cont++) {
                         if (caselles[x][y].getText().equals("")) {
                             array[cont] = 0;
                         } else {
@@ -238,9 +250,9 @@ public class Taulell extends JPanel {
             }
         }
 
-        for (int y = 0; y < caselles.length; y++) {
+        for (int x = 0; x < caselles.length; x++) {
 
-            for (int x = 0; x < caselles.length; x++) {
+            for (int y = 0; y < caselles.length; y++) {
                 if (caselles[x][y].getText().equals("")) {
                     array[y] = 0;
                 } else {
@@ -270,6 +282,7 @@ public class Taulell extends JPanel {
                     for (int j = 0; j < caselles[i].length; j++) {
                         caselles[i][j].setEditable(false);
                         caselles[i][j].setBackground(Color.white);
+                        caselles[i][j].setForeground(Color.black);
                     }
                 }
                 break;

@@ -34,6 +34,7 @@ public class Joc {
 
         //ventana
         ventana = new JFrame("Sudoku v1.1");
+        ventana.setIconImage(new ImageIcon(Joc.class.getResource("logo.png")).getImage());
         ventana.setResizable(false);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(920, 750);
@@ -42,8 +43,10 @@ public class Joc {
 
         GridBagConstraints f = new GridBagConstraints();
 
+        
+        
         //
-        JLabel main = new JLabel(new ImageIcon("img/fondo.jpg"));
+        JLabel main = new JLabel(new ImageIcon(Joc.class.getResource("fondo.jpg")));
         main.setLayout(new GridBagLayout());
 
         f.insets = new Insets(0, 0, 0, 0);
@@ -110,7 +113,7 @@ public class Joc {
         c.gridwidth = 2;
         c.gridheight = 3;
 
-        JLabel logo = new JLabel(new ImageIcon("img/logo.png"));
+        JLabel logo = new JLabel(new ImageIcon(Joc.class.getResource("logo.png")));
         frame.add(logo, c);
 
         //botones

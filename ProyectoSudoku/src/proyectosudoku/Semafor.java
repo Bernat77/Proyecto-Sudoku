@@ -18,23 +18,23 @@ public class Semafor extends JLabel{
     
     
     public Semafor(){
-        setIcon(new ImageIcon("img/4apagado.png"));
+        setIcon(new ImageIcon(Joc.class.getResource("4apagado.png")));
     }
 
     
     public void setStatus(int n){
         switch(n){
             case 1:
-                setIcon(new ImageIcon("img/1verde.png"));
+                setIcon(new ImageIcon(Joc.class.getResource("1verde.png")));
                 break;
             case 2:
-                setIcon(new ImageIcon("img/2amarillo.png"));
+                setIcon(new ImageIcon(Joc.class.getResource("2amarillo.png")));
                 break;
             case 3:
-                setIcon(new ImageIcon("img/3rojo.png"));
+                setIcon(new ImageIcon(Joc.class.getResource("3rojo.png")));
                 break;
             case 4:
-                setIcon(new ImageIcon("img/4apagado.png"));
+                setIcon(new ImageIcon(Joc.class.getResource("4apagado.png")));
                 break;
         }
         

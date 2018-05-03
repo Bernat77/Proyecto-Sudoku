@@ -42,6 +42,7 @@ public class Boton extends JButton {
                     }
                 }
             }
+            Boton.this.joc.getTaulell().pintarCasellas();
             Boton.this.joc.getVentana().revalidate();
             Boton.this.joc.getVentana().repaint();
         }

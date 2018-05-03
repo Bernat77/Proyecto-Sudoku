@@ -13,11 +13,22 @@ import java.awt.event.*;
  *
  * @author Bernat2
  */
-public class CasellaVaria extends Casella {
+public class CasellaVaria extends Casella{
 
     public CasellaVaria() {
         super();
         setText("");
+        addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                CasellaVaria.this.select(0,getText().length());
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                CasellaVaria.this.select(0,0);
+            }
+        });
 
     }
 
