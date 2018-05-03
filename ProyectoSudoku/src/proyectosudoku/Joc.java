@@ -43,8 +43,6 @@ public class Joc {
 
         GridBagConstraints f = new GridBagConstraints();
 
-        
-        
         //
         JLabel main = new JLabel(new ImageIcon(Joc.class.getResource("fondo.jpg")));
         main.setLayout(new GridBagLayout());
@@ -66,6 +64,18 @@ public class Joc {
 
     }
 
+    public void activarReiniciar() {
+
+        Container c0 = ventana.getContentPane();
+        JLabel c1 = (JLabel)(c0.getComponent(0));
+        JPanel c2 = (JPanel) c1.getComponent(1);
+        JButton c3 = (JButton) (c2.getComponent(2));
+        if (!c3.isEnabled()) {
+            c3.setEnabled(true);
+        }
+
+    }
+
     public JPanel panel1() {
 
         JPanel frame = new JPanel(new GridBagLayout());
@@ -73,7 +83,7 @@ public class Joc {
         frame.setBackground(new Color(0, 0, 0, 0));
         //c.weightx = 1;
         //c.weighty = 1;
-        
+
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
@@ -134,6 +144,7 @@ public class Joc {
         boton2.setAccion(4);
         boton2.setPreferredSize(new Dimension(130, 50));
         boton2.setFont(fuente);
+        boton2.setEnabled(false);
         frame.add(boton2, c);
 
         c.insets = new Insets(30, 0, 0, 20);
@@ -144,16 +155,15 @@ public class Joc {
         boton3.setPreferredSize(new Dimension(130, 50));
         boton3.setFont(fuente);
         frame.add(boton3, c);
-        
+
         c.insets = new Insets(60, 20, 0, 0);
-        c.gridy=5;
-        c.gridx=1;
+        c.gridy = 5;
+        c.gridx = 1;
         Font fcopy = new Font("fuentecop", Font.ITALIC, 12);
-        JLabel copyright= new JLabel("© Bernat Salleras,2018");
+        JLabel copyright = new JLabel("© Bernat Salleras,2018");
         copyright.setFont(fcopy);
         copyright.setForeground(Color.white);
-        frame.add(copyright,c);
-                
+        frame.add(copyright, c);
 
         return frame;
     }
@@ -205,7 +215,6 @@ public class Joc {
         return sudoku;
 
     }
-
 
     public Boton crearBoton(String texto) {
         Boton boton = new Boton(texto);

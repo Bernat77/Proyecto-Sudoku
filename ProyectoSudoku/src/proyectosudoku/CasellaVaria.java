@@ -8,12 +8,11 @@ package proyectosudoku;
 import java.awt.Color;
 import java.awt.event.*;
 
-
 /**
  *
  * @author Bernat2
  */
-public class CasellaVaria extends Casella{
+public class CasellaVaria extends Casella {
 
     public CasellaVaria() {
         super();
@@ -21,12 +20,12 @@ public class CasellaVaria extends Casella{
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                CasellaVaria.this.select(0,getText().length());
+                CasellaVaria.this.select(0, getText().length());
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                CasellaVaria.this.select(0,0);
+                CasellaVaria.this.select(0, 0);
             }
         });
 
@@ -34,7 +33,9 @@ public class CasellaVaria extends Casella{
 
     @Override
     public void processKeyEvent(KeyEvent ev) {
-        if (Character.isDigit(ev.getKeyChar())
+
+        if (Character.isDigit(ev.getKeyChar()) && ev.getKeyChar() != '0'
+                && this.getDocument().getLength() == 0
                 || ev.getKeyChar() == KeyEvent.VK_BACK_SPACE
                 || ev.getKeyChar() == KeyEvent.VK_DELETE) {
             super.processKeyEvent(ev);

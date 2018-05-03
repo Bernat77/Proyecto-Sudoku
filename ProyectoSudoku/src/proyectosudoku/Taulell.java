@@ -253,10 +253,10 @@ public class Taulell extends JPanel {
         for (int x = 0; x < caselles.length; x++) {
 
             for (int y = 0; y < caselles.length; y++) {
-                if (caselles[x][y].getText().equals("")) {
+                if (caselles[y][x].getText().equals("")) {
                     array[y] = 0;
                 } else {
-                    array[y] = Integer.parseInt(caselles[x][y].getText());
+                    array[y] = Integer.parseInt(caselles[y][x].getText());
                 }
             }
         }

@@ -23,6 +23,7 @@ public class Boton extends JButton {
             Boton.this.joc.getSemaforo().setStatus(4);
             Boton.this.joc.getCrono().reset();
             Boton.this.joc.getCrono().getTim().start();
+            Boton.this.joc.activarReiniciar();
             Boton.this.joc.nuevoTaulell();
         }
     }
