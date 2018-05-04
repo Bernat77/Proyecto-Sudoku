@@ -14,7 +14,6 @@ import java.util.*;
 public class Sudoku {
 
     private ArrayList<int[][]> sudokus;
-    private int[] tuputamadre = {1, 2, 3};
 
     public Sudoku() {
         sudokus = new ArrayList<int[][]>();
